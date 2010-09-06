@@ -1,0 +1,1 @@
+﻿package  {		import com.bumpslide.ui.MovieClipButton;		/**	 * This class is used in the MovieClipButtonDemo.fla file	 * 	 * It is required in order to get 'Automatically Declare Stage Instances' to be off	 */	public class SampleMovieClipButton extends MovieClipButton {					}	}
