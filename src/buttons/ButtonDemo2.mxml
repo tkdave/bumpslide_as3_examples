@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Button Demo in MXML
+-->
+<ui:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*">
+
+	<fx:Script>
+		<![CDATA[
+			
+			import com.bumpslide.ui.skin.ImageButtonSkin;		
+		]]>
+	</fx:Script>
+	
+	<ui:Container layout="vertical" x="10" y="10" spacing="10">
+	 
+	 	<ui:Button label="Button 1 - Auto-sized" />
+	 	
+	 	<ui:Button label="Button 2 - Explicit Width" width="200" />
+	 	
+	 	<ui:Button label="Button 3 - Explicit Width And A Nice Long Label" width="200" />
+	 	
+	 	<ui:Button label="Button 4 - Explicit Width and Height" width="200" height="100" />
+	 	
+	 	<ui:Button label="Button 5 - Auto-sized, but with Extra Padding" padding="5 25" />
+	 	
+	 	<ui:Button label="Button 6 - Image Skin" skinClass="{ImageButtonSkin}" width="100" height="20"/>
+	 	
+	 	<ui:Button id="dragButton">
+			<ui:skin>
+				<ui:Box width="200" height="50" backgroundColor="#ccddee">
+					<ui:Label text="Button 7 - Inline Skin" x="10" y="10" width="180" selectable="false" bold="true" fontSize="14"/>
+				</ui:Box>
+			</ui:skin>
+		</ui:Button>
+	 	
+	 </ui:Container>
+	 
+	 
+	
+</ui:Application>

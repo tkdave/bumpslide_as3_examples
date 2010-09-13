@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="com.bumpslide.ui.*">
+
+
+	<fx:Script>
+		<![CDATA[
+			import com.bumpslide.util.ImageUtil;
+			import com.bumpslide.ui.skin.defaults.Style;
+			import com.bumpslide.util.LoremIpsum;
+			import flash.text.TextFormat;
+			
+			
+			// This is a BitmapAsset
+			[Embed(source='assets/product_image.jpg')]
+			private var product_image:Class;
+			
+			
+			[Embed(source='assets/giraffe2_400.jpg')]
+			private var panorama_image:Class;
+			
+			
+			override protected function init() : void {
+				super.init();
+				// default label format
+				Style.LABEL_TEXT_FORMAT = new TextFormat( 'Arial', 14, 0x333333, true );
+			}
+			
+			private function updatePreviewRect( img:Image, box:Box ):void {
+				var size:Rectangle = ImageUtil.resizeRect( new Rectangle(0,0,200,200), ImageUtil.getSize(img) );
+				if(box) {
+					box.setSize( size.width, size.height );
+					box.x = img.x + (img.width - box.width)/2;
+					box.y = img.y + (img.height - box.height)/2;
+				}
+				
+			}
+
+		]]>
+	</fx:Script>
+	
+	<Container layout="vertical" spacing="25" y="25" x="25">
+	
+		<Component>
+			<Label text="Resized" />
+			<Label text="Cropped" x="225" />
+			<Label text="Original With Crop Preview" x="450" />
+		</Component>
+
+		<Component>
+			<Image width="200" height="200" source="{panorama_image}" scaleMode="resize"/>
+			<Image x="225" width="200" height="200" source="{panorama_image}" scaleMode="crop"/>
+			<Image id="originalImage1" x="450" width="200" height="200" source="{panorama_image}" onImageLoaded="updatePreviewRect( originalImage1, previewBox1)"/>
+			
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="225" width="200" height="200"/>
+			<Box id="previewBox1" backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
+		</Component>
+		
+		<Component>
+			<Image width="200" height="200" source="{product_image}" scaleMode="resize"/>
+			<Image x="225" width="200" height="200" source="{product_image}" scaleMode="crop"/>
+			<Image id="originalImage2" x="450" width="200" height="200" source="{product_image}" onImageLoaded="updatePreviewRect( originalImage2, previewBox2)"/>
+			
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="225" width="200" height="200"/>
+			<Box id="previewBox2" backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" y="300" width="200" height="200"/>
+		</Component>
+	</Container>
+			
+</Application>
