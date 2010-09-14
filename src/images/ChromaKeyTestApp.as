@@ -1,6 +1,7 @@
 package images
 {
 
+	import com.bumpslide.ui.FramerateMonitor;
 	import com.bumpslide.data.type.RGB;
 	import com.bumpslide.ui.Application;
 	import com.bumpslide.ui.Container;
@@ -62,6 +63,7 @@ package images
 		
 		override protected function addChildren() : void
 		{	
+			add( FramerateMonitor );
 			
 			img = new Image( product_image, Image.SCALE_RESIZE, 200, 200 );
 			img.move( 20, 100 );
@@ -121,6 +123,8 @@ package images
 			super.commitProperties();
 			
 			if(hasChanged('shader') &&  img.loaded) {
+				
+				trace('shading');
 				
 				//Pass the loaded filter to the Shader as a ByteArray
 				label1.text ="Tolerance: " + StringUtil.formatNumber( slider1.value, 3);
