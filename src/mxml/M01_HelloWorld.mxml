@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  	MXML Demo 1 - Introduction to MXML 2009
+
+	The sprite class doesn't know how to add children via MXML,
+	but we can still declare and instantiate our children inside
+	a Declarations block.
+
+	We can then add children to this sprite inside an 'addedToStage' 
+	event handler.  Here, we are also using an 'enterFrame' event 
+	handler to rotate the text about its Y axis. 
+
+	This example is designed to highlight core MXML 2009 features:  	
+
+	  1. XML namespaces can be used like import statements.
+	  
+	  2. The Declarations block allows us to create instances of any class.
+	  
+	  3. XML element attributes correspond to public properties and events.
+	  
+	  4. Complex properties can be declared as child nodes.
+	     (see 'defaultTextFormat' property of the TextField instance)
+
+      5. Event handlers can be written as inline ActionScript 
+         (see 'enterFrame' and 'addedToStage' attributes on root sprite)
+
+
+	@author David Knape
+-->
+	
+<fl:Sprite 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			xmlns:fl="flash.display.*" 
+			xmlns:t="flash.text.*"
+			addedToStage="addChild( label )"
+			enterFrame="label.rotationY+=1">
+	
+	<fx:Declarations>
+			
+		<t:TextField id="label" x="200" y="100" autoSize="left">			
+			<t:defaultTextFormat>
+				<t:TextFormat id="tf" font="Arial" color="0x336699" size="20" />
+			</t:defaultTextFormat>
+			<t:htmlText>
+				<![CDATA[
+					Hello, <b>Bold</b> New World. <br />
+					MXML, yes. But, only <b>4kB!</b>
+				]]>
+			</t:htmlText>
+		</t:TextField>
+		
+	</fx:Declarations>
+	
+</fl:Sprite>

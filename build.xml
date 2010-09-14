@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Bumpslide Examples" basedir="." default="updateBumpslideSwc">
+    
+    <!--location of property file -->
+    <property file="${basedir}/build.properties" description="your specific properities for builds" />
+    
+    <!-- additional tasks -->
+    <!--<taskdef name="mxmlc" classname="flex.ant.MxmlcTask" classpath="${FLEX_TASKS}"/>
+    <taskdef name="compc" classname="flex.ant.CompcTask" classpath="${FLEX_TASKS}"/>
+    <taskdef name="asdoc" classname="flex.ant.AsDocTask" classpath="${FLEX_TASKS}"/>
+	 -->
+	
+	<target name="updateBumpslideSwc" description="Shortcut David Uses to update the bumpslide SWC">
+		<exec executable="ant" dir="${BUMPSLIDE_AS3_DIR}/">
+			<arg value="compile-swc" />
+		</exec>
+		<copy file="${BUMPSLIDE_AS3_DIR}/bin/bumpslide-as3.swc" toDir="${LIBS_DIR}" />
+	</target>
+    
+</project>

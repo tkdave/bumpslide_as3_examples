@@ -1,0 +1,5 @@
+.project
+.settings
+bin-debug/
+build.properties
+.DS_Store

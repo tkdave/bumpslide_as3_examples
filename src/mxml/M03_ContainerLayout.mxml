@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ui:Applet xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*" >
+
+	<!--
+  		MXML Demo 2 - Alignment/spacing with Containers
+	
+		In Flex, we have HBox and VBox.  In the Bumpslide library we just have 
+		a Container class that has a layout property.  Layout can be horizontal
+		or vertical.  
+		
+		This is merely a proof of concept and is not meant to be a layout framework
+		like Flex 4 groups.  
+		
+		This is also a nice little demo of the Bumpslide combo box.
+		
+		@author David Knape
+		@mxmlc -sp+=../../classes -incremental -static-link-runtime-shared-libraries
+	-->
+	
+	<ui:ComboBox 
+		id="layoutChooser" 
+		x="20" y="20"
+		dataProvider="['horizontal','vertical']" 
+		selectedIndex="0" 
+		change="myContainer.layout=layoutChooser.selectedItem;"
+	/>	
+		
+	<ui:Container id="myContainer" x="20" y="60" layout="horizontal">
+		<ui:Box color="0x880000" />		
+		<ui:Box color="0x008800"/>		
+		<ui:Box color="0x000088"/>
+		<ui:Box color="0x888800"/>			
+	</ui:Container>
+	
+</ui:Applet>
