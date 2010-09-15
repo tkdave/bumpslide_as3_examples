@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ui:Applet xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*" >
+<ui:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*" enterFrame="loop()">
 
 	<!--
   		MXML Demo 2 - Alignment/spacing with Containers
 	
-		In Flex, we have HBox and VBox.  In the Bumpslide library we just have 
+		In Flex 3, we have HBox and VBox.  In the Bumpslide library we just have 
 		a Container class that has a layout property.  Layout can be horizontal
 		or vertical.  
 		
 		This is merely a proof of concept and is not meant to be a layout framework
 		like Flex 4 groups.  
-		
-		This is also a nice little demo of the Bumpslide combo box.
-		
+				
 		@author David Knape
-		@mxmlc -sp+=../../classes -incremental -static-link-runtime-shared-libraries
+		@mxmlc -l+=../../libs -sp+=../ -static-rsls -default-frame-rate=50 -default-background-color=0xeeeeee
 	-->
 	
-	<ui:ComboBox 
-		id="layoutChooser" 
-		x="20" y="20"
-		dataProvider="['horizontal','vertical']" 
-		selectedIndex="0" 
-		change="myContainer.layout=layoutChooser.selectedItem;"
-	/>	
+	<fx:Script>
+		<![CDATA[
+			private function loop():void {
+				animatedBox.setSize( 50 + Math.sin( getTimer()/800 ) * 25, 50 + Math.sin( getTimer()/800 ) * 25 );
+				animatedBox2.setSize( 300, 20 + Math.sin( getTimer()/400 ) * 10 );
+			}
+		]]>
+	</fx:Script>
+			
+	<ui:Container x="20" y="20" layout="vertical" spacing="10">
+	
+		<ui:Label text="Horizontal" />
 		
-	<ui:Container id="myContainer" x="20" y="60" layout="horizontal">
-		<ui:Box color="0x880000" />		
-		<ui:Box color="0x008800"/>		
-		<ui:Box color="0x000088"/>
-		<ui:Box color="0x888800"/>			
+		<ui:Container layout="horizontal" spacing="2">
+			<ui:Box backgroundColor="0x880000" width="50" height="50"/>		
+			<ui:Box backgroundColor="0x008800" width="60" height="50"/>		
+			<ui:Box id="animatedBox" backgroundColor="0x000088" width="70" height="50"/>
+			<ui:Box backgroundColor="0xddcc00" width="80" height="50" roundedPosition="false"/>			
+		</ui:Container>
+		
+		<ui:Label text="Vertical"/>
+		
+		<ui:Container layout="vertical" spacing="2" roundedPosition="false">
+			<ui:Box backgroundColor="0x880000" width="300" height="10"/>		
+			<ui:Box id="animatedBox2" backgroundColor="0x008800" width="300" height="20"/>		
+			<ui:Box backgroundColor="0x000088" width="300" height="30" roundedPosition="false"/>
+			<ui:Box backgroundColor="0xddcc00" width="300" height="40" roundedPosition="false"/>			
+		</ui:Container>
+	
 	</ui:Container>
 	
-</ui:Applet>
+</ui:Application>

@@ -10,32 +10,32 @@
 	In this example, we're simply nesting some text and boxes.
 
 	@author David Knape
-	@mxmlc -sp+=../../classes -incremental -static-link-runtime-shared-libraries -default-frame-rate=31 -default-background-color=0x333333
+	@mxmlc -l+=../../libs -sp+=../ -static-rsls -default-frame-rate=31 -default-background-color=0x333333
 
 -->
 
-<ui:Applet 
+<ui:Application 
 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:ui="com.bumpslide.ui.*">
 			
 	<ui:Box 
 		x="50" y="50" cornerRadius="12" 
 		width="400" height="250" 
-		color="0xffffff" borderColor="0xdddddd" 
+		backgroundColor="0xffffff" borderColor="0xdddddd" 
 		borderPixelHinting="true" borderWidth="1">
 	
 		<ui:Box 
 			x="6" y="6" cornerRadius="6" 
 			width="388" height="50" 
-			color="0x112255" borderPixelHinting="true">
+			backgroundColor="0x112255" borderPixelHinting="true">
 			
-			<ui:TextBox 
+			<ui:Label 
 				text="Hello. My name is..." 
 				x="10" y="6" width="400" 
 				textFormat="{new TextFormat('Arial', 25, 0xffffff, true)}" />					
 		</ui:Box>
 				
-		<ui:TextBox 
+		<ui:Label 
 			text="Bumpslide" 
 			x="20" y="80" 
 			width="400"
@@ -43,4 +43,4 @@
 			
 	</ui:Box>
 	
-</ui:Applet>
+</ui:Application>
