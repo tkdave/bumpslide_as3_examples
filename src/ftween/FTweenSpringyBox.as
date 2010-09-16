@@ -56,8 +56,8 @@ package ftween
 		 * Update the target box position to match the mouse position
 		 */
 		private function updateBox( e:Event ):void {
-			FTween.spring(box, 'x', mouseX - box.width / 2);
-			FTween.spring(box, 'y', mouseY-box.width/2, .2, .2, {onUpdate:onTweenUpdate} );  
+			FTween.smooth(box, 'x', mouseX - box.width / 2);
+			FTween.smooth(box, 'y', mouseY-box.width/2, .2, .2, {onUpdate:onTweenUpdate} );  
 		}
 
 		private function onTweenUpdate(tw:FTween):void {
