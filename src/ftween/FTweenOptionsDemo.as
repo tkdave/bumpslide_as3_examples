@@ -24,7 +24,7 @@ package ftween
 	/**
 	 * FTween Options Demo
 	 * 
-	 * @mxmlc -sp=../../classes/
+	 * @mxmlc -l+=../../libs -sp+=../ -static-rsls
 	 * @author David Knape
 	 */
 	[SWF(backgroundColor="0xffffff",frameRate="31")]

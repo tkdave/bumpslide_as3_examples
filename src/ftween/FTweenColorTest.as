@@ -28,6 +28,7 @@ package ftween
 	 * This is also a nice barebones GridLayout Example
 	 * 
 	 * @author David Knape
+	 * @mxmlc -l+=../../libs -sp+=../ -static-rsls
 	 */
 	[SWF(backgroundColor="0xffffff",frameRate="31")]
 	public class FTweenColorTest extends Application

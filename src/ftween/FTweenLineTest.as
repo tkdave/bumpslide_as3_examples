@@ -59,7 +59,7 @@ package ftween
 		
 		private function updateTval( event:Event ) : void
 		{
-			FTween.smooth( this, 'tval', mouseY);
+			FTween.easeInOut( this, 'tval', mouseY);
 		}
 		
 		

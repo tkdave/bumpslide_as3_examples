@@ -26,6 +26,7 @@ package ftween
 	 * A small line on the left side of the screen is drawn to demonstrate
 	 * FTween onUpdate callback functionality.
 	 * 
+	 * @mxmlc -l+=../../libs -sp+=../ -static-rsls
 	 * @author David Knape
 	 */
 	[SWF(backgroundColor="#FFFFFF", frameRate="31", width="640", height="480")]
@@ -56,8 +57,8 @@ package ftween
 		 * Update the target box position to match the mouse position
 		 */
 		private function updateBox( e:Event ):void {
-			FTween.smooth(box, 'x', mouseX - box.width / 2);
-			FTween.smooth(box, 'y', mouseY-box.width/2, .2, .2, {onUpdate:onTweenUpdate} );  
+			FTween.spring(box, 'x', mouseX - box.width / 2);
+			FTween.spring(box, 'y', mouseY-box.width/2, .2, .2, {onUpdate:onTweenUpdate} );  
 		}
 
 		private function onTweenUpdate(tw:FTween):void {
