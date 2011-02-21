@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Button Demo in MXML that uses skins created in Flash
+	
+	@author David Knape
+	@mxmlc -sp+=../ -sp+=../../../bumpslide_as3/src -l+=../../libs/skins.swc -static-rsls
+-->
+<ui:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*" xmlns:sample="sample.*">
+
+	<fx:Script>
+		<![CDATA[
+
+			// embedded assets (from skins.swc)
+			import sample.*;
+
+			import com.bumpslide.ui.skin.defaults.Style;
+			
+			import flash.text.TextFormat;
+			import flash.text.Font;
+			
+			override protected function init() : void
+			{
+				super.init();
+				
+				// set default button skin to asset found in skins.swc
+				Button.DefaultSkinClass = sample.ButtonBackgroundSkin;
+				
+				// set default label text format to the custom font embedded in the swc				
+				var f:Font = new MyLabelFont();
+				Style.LABEL_TEXT_FORMAT = new TextFormat( f.fontName, 16, 0x000000, true);
+				Style.LABEL_FONT_EMBEDDED = true;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<ui:VBox x="10" y="10" spacing="10">
+	 
+	 	<!-- using the background skin from the library, set as default above -->
+	 	<ui:Button width="100" height="20" label="not displayed with movieclip as skin" />
+	 	
+	 	<!-- of course, we can add a label as a child to the button, and the background skin still works. -->
+	 	<ui:Button width="200" height="40">
+	 	
+	 		<!-- since Label is a Component, we can set alignment params to center it-->
+	 		<ui:Label text="Hello" alignH="center" alignV="middle" alpha=".8"/>
+	 		
+	 	</ui:Button>
+	 	
+	 	<!-- we also have an icon property that can be anything you would pass to an Image.source -->
+	 	<ui:Button width="32" height="32" icon="{ArrowIcon}" />
+	 	
+	 	
+	 	<!-- Icons can also be created like this -->	 	
+		<ui:Button width="32" height="32" >
+			<ui:icon>
+				<ui:Box width="16" height="16" cornerRadius="99" backgroundColor="#990000" />
+			</ui:icon>
+	 	</ui:Button>
+	 	
+	 	<!-- finally, we could just use the movie clip as the skin -->
+	 	<ui:Button skinClass="{ sample.ArrowIcon }" />
+	 	
+	 	
+	 </ui:VBox>
+	 
+	 
+	
+</ui:Application>

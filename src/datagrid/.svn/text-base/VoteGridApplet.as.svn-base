@@ -1,0 +1,40 @@
+package supergrid 
+{
+	import com.bumpslide.data.LazyDataProvider;
+	import superchart.data.LazyVoteItemProvider;
+	import com.bumpslide.util.LoremIpsum;
+	import com.bumpslide.ui.Grid;
+	import com.bumpslide.ui.Application;
+
+	/**
+	 * VoteGridApplet
+	 *
+	 * @author David Knape
+	 * @version SVN: $Id: $
+	 */
+	public class VoteGridApplet extends Application 
+	{
+
+		private var grid:DataGrid;
+
+		
+		override protected function addChildren():void 
+		{
+			super.addChildren();			
+			grid = new DataGrid();			
+			grid.tweenEnabled = false;
+			grid.dataProvider = LoremIpsum.DATA;
+			grid.columns = ['id', 'voter_has', 'vote', 'created_at', 'remote_ip' ];
+			grid.columnSizes = [ .1, .3, .6 ];
+			grid.dataProvider = new LazyDataProvider( new LazyVoteItemProvider( 4 ) );
+			addChild( grid );
+		}
+
+		
+		override protected function draw():void 
+		{
+			
+			grid.setSize( width, height );
+		}
+	}
+}

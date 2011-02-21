@@ -1,0 +1,60 @@
+package supergrid 
+{
+	import com.bumpslide.ui.Grid;
+
+	/**
+	 * DataGrid
+	 *
+	 * @author David Knape
+	 * @version SVN: $Id: $
+	 */
+	public class DataGrid extends Grid 
+	{	
+		private var _columns:Array;
+		private var _columnSizes:Array;
+		
+		public function DataGrid( item_renderer:Class=null, row_height:Number=20, columns:Array=null, column_sizes:Array=null ) 
+		{
+			if(item_renderer==null) item_renderer=DataGridRow;
+			super( item_renderer, 100, row_height);
+			fixedColumnCount = 1;
+			if(columns) this.columns = columns;
+			if(column_sizes) this.columnSizes = columns;
+		}
+				
+		override public function set dataProvider(dp:*):void {
+			
+			// Init columns based on data in data provider
+			if(_columns==null && dp!=null) {
+				var first_item:Object = getItemAt(0, dp);
+				if(first_item!=null) {
+					_columns = [];
+					for( var prop:String in first_item ) {
+						_columns.push( prop );
+					}
+				}
+			}
+			super.dataProvider = dp;
+		}
+		
+		public function get columns():Array {
+			return _columns;
+		}
+		
+		
+		public function set columns(columns:Array):void {
+			_columns = columns;
+			invalidate();
+		}
+		
+		public function get columnSizes():Array {
+			return _columnSizes;
+		}
+		
+		
+		public function set columnSizes(columnSizes:Array):void {
+			_columnSizes = columnSizes;
+			invalidate();
+		}
+	}
+}
