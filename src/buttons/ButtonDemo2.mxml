@@ -1,40 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 	Button Demo in MXML
+	
+	@mxmlc -l+=../../libs -sp+=../ -static-rsls
 -->
 <ui:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*">
 
 	<fx:Script>
 		<![CDATA[
+
+			import com.bumpslide.util.LoremIpsum;
+			import com.bumpslide.ui.skin.defaults.Style;
+			import com.bumpslide.ui.skin.ImageButtonSkin;
+
+			[Bindable]
+			public var labelFormat:TextFormat = new TextFormat( 'Georgia', 14, 0x223344, true, null, null, null, null, 'center' );
 			
-			import com.bumpslide.ui.skin.ImageButtonSkin;		
+			// Setup some default styles
+			Style.LABEL_TEXT_FORMAT = new TextFormat( 'Trebuchet MS', 12, 0x333333, true );
+			Style.BUTTON_CORNER_RADIUS = 3;
+			
+			
 		]]>
 	</fx:Script>
-	
-	<ui:Container layout="vertical" x="10" y="10" spacing="10">
-	 
-	 	<ui:Button label="Button 1 - Auto-sized" />
-	 	
-	 	<ui:Button label="Button 2 - Explicit Width" width="200" />
-	 	
-	 	<ui:Button label="Button 3 - Explicit Width And A Nice Long Label" width="200" />
-	 	
-	 	<ui:Button label="Button 4 - Explicit Width and Height" width="200" height="100" />
-	 	
-	 	<ui:Button label="Button 5 - Auto-sized, but with Extra Padding" padding="5 25" />
-	 	
-	 	<ui:Button label="Button 6 - Image Skin" skinClass="{ImageButtonSkin}" width="100" height="20"/>
-	 	
-	 	<ui:Button id="dragButton">
-			<ui:skin>
-				<ui:Box width="200" height="50" backgroundColor="#ccddee">
-					<ui:Label text="Button 7 - Inline Skin" x="10" y="10" width="180" selectable="false" bold="true" fontSize="14"/>
-				</ui:Box>
-			</ui:skin>
+
+	<ui:Container layout="vertical" x="10" y="10" spacing="5">
+
+		<ui:Button label="Button 1 - Auto-sized"/>
+
+		<ui:Button label="Button 2 - Explicit Width" width="200"/>
+
+		<ui:Button label="Button 3 - Truncated Labels When Necessary" width="250"/>
+
+		<ui:Button label="Button 4 - Explicit Width and Height" width="240" height="50"/>
+
+		<ui:Button label="Button 5 - Auto-sized, but with Extra Padding" padding="20 40"/>
+
+		<ui:Button skinClass="{ImageButtonSkin}" width="320" height="80">
+			<ui:Label text="Button 6 - Sample Image Skin and Custom Wrapped Label - {LoremIpsum.SENTENCE}" wordWrap="true" maxLines="3" width="260"
+			          height="60" alignH="center" alignV="middle" textFormat="{labelFormat}">
+
+			</ui:Label>
 		</ui:Button>
-	 	
-	 </ui:Container>
-	 
-	 
-	
+
+		<ui:CheckBox label="Button 7 - Checkbox"/>
+
+		<ui:Button>
+			<ui:skin>
+				<ui:Box height="26" backgroundColor="#ccddee" borderColor="#223344" borderWidth="2" cornerRadius="13" />
+			</ui:skin>
+			<ui:Label text="Button 8 - Inline Skin" x="4"  y="4" selectable="false" bold="true" fontSize="14"/>
+		</ui:Button>
+
+	</ui:Container>
+
+
+
 </ui:Application>

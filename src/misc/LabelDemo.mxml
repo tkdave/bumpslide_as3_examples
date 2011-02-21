@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="com.bumpslide.ui.*" xmlns:layout="com.somerandomdude.coordy.layouts.twodee.*">
-		
-		<fx:Script>
-			<![CDATA[
-				import com.bumpslide.util.LoremIpsum;
-				
-				static public var DESCRIPTION:String = "Examples of various label properties.";
-			]]>
-		</fx:Script>
-		
-		<Container layout="vertical">
-		
-			<Container spacing="0">				
-				<Label text="Hello" />
-				<Label text="Horizontally" />
-				<Label text="Aligned" width="200"/>
-				<Label text="Labels should wrap if they have a width set." width="100" />
-			</Container>
+<Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="com.bumpslide.ui.*"
+             xmlns:layout="com.somerandomdude.coordy.layouts.twodee.*">
+
+	<fx:Script>
+		<![CDATA[
+
+			import com.bumpslide.util.LoremIpsum;
+
+			import flash.filters.*;
 			
-			<Container y="50" layout="vertical" spacing="0">
-				<Label text="Hello this is a test to see how things will wrap at 200px." width="200" />
-				<Label text="{LoremIpsum.TEXT}" width="{.8*width}" maxLines="10" />
-				<Label text="{LoremIpsum.TEXT}" width="200" maxLines="2" color="#ff0000" textAlign="justify" fontSize="20" />
-			</Container>
-			
-			<Container>
-				<Box backgroundColor="{LoremIpsum.COLORS[0]}" />
-				<Box backgroundColor="{LoremIpsum.COLORS[1]}" width="{.6*width}" />
-				<Box backgroundColor="{LoremIpsum.COLORS[2]}" />
-			</Container>
+			static public var DESCRIPTION:String = "Examples of various label properties.";
+
+		]]>
+	</fx:Script>
+
+	<Container layout="vertical">
+
+		<Container spacing="0">
+			<Label text="Hello"/>
+			<Label text="Horizontally"/>
+			<Label text="Aligned" width="200"/>
+			<Label text="Labels should wrap if they have a width set."
+			       width="100"/>
 		</Container>
-		
+
+		<Container y="50" layout="vertical" spacing="0">
+			<Label text="Hello this is a test to see how things will wrap at 200px."
+			       width="200"/>
+			<Label text="{LoremIpsum.TEXT}" width="{.8 * width}"
+			       maxLines="10"/>
+			<Label text="{LoremIpsum.TEXT}" width="200" maxLines="2"
+			       color="#ff0000" textAlign="justify" fontSize="20"/>
+		</Container>
+
+		<Container>
+			<Box backgroundColor="{LoremIpsum.COLORS[0]}"/>
+			<Box backgroundColor="{LoremIpsum.COLORS[1]}" width="{.6 * width}"/>
+			<Box backgroundColor="{LoremIpsum.COLORS[2]}"/>
+		</Container>
+	</Container>
+
 </Application>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="com.bumpslide.ui.*">
 	
-		<DatePicker x="20" y="20"/>
+		<DatePicker x="20" y="20" />
 	
 </Application>
