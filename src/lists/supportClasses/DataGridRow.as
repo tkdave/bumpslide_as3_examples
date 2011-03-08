@@ -1,4 +1,4 @@
-package datagrid 
+package lists.supportClasses 
 {
 	import com.bumpslide.util.ObjectPool;
 	import com.bumpslide.ui.GridItem;
@@ -14,7 +14,7 @@ package datagrid
 		public var grid:DataGrid;
 		public var labels:Array;
 		static public var labelPool:ObjectPool = new ObjectPool( Label );		
-	
+		
 		override protected function draw():void 
 		{
 			// recreate labels each time, but pull them from an 
@@ -42,12 +42,19 @@ package datagrid
 						col_width = width/grid.columns.length;
 					}
 					var s:String = String(gridItemData[ col ]);
-					lbl = labelPool.getObject( { text:s, width: col_width, x: col_x, maxLines:1 } );
+					if(s=='undefined' && col=='gridIndex') s = ""+gridIndex;
+					lbl = labelPool.getObject( { text:s, width: col_width,  padding:5, x: col_x, y: 0, maxLines:1 } );
 					labels.push( addChild( lbl ) );
 					col_num++;
 					col_x+=col_width;
 				}
 			}
+			
+			graphics.clear();
+			graphics.lineStyle( 0, 0x999999, 1.0, false);
+			graphics.moveTo( 0, height );
+			graphics.lineTo( width, height );
+			
 		}
 		
 		

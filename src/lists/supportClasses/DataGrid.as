@@ -1,4 +1,4 @@
-package datagrid 
+package lists.supportClasses 
 {
 	import com.bumpslide.ui.Grid;
 
@@ -20,6 +20,7 @@ package datagrid
 			// We always want one data item per row
 			// Thus, 1 gridlayout column
 			fixedColumnCount = 1;
+			padding = 0;
 			
 			// These are the properties we will assign to columns
 			if(columns) this.columns = columns;
