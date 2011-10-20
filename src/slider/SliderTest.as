@@ -9,10 +9,13 @@ package slider
 
 
 	/**
-	 * SliderTest
+	 * Slider Test
 	 *
-	 * @author David Knape
+	 * @mxmlc -l+=../../libs -sp+=../ -static-rsls
+	 * 
+	 * @author David Knape, http://bumpslide.com/
 	 */
+	[SWF(backgroundColor="#ffffff", frameRate="60", width="480", height="480")]
 	public class SliderTest extends Application
 	{
 		public function SliderTest()
