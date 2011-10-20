@@ -76,13 +76,13 @@ package lists.supportClasses
 		 */
 		override public function set x( x:Number ):void {
 			// super.x = x;
-			FTween.ease( this, 'tweenX', x, .2, { delay:gridIndex * 15 } );
+			FTween.ease( this, 'tweenX', x, .2, { delay:gridIndex * 10 } );
 		}
 
 
 		override public function set y( y:Number ):void {
 			// super.y = y;
-			FTween.spring( this, 'tweenY', y, .3, .45, { delay:gridIndex * 20 } );
+			FTween.spring( this, 'tweenY', y, .3, .45, { delay:gridIndex * 12 } );
 		}
 
 

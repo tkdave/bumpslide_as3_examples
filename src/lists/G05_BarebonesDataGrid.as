@@ -13,16 +13,17 @@ package lists
 
 	import lists.supportClasses.DataGrid;
 
+	import net.hires.debug.Stats;
+
 	import com.bumpslide.data.LoopedDataProvider;
-	import com.bumpslide.events.DragEvent;
+	import com.bumpslide.events.UIEvent;
 	import com.bumpslide.ui.Application;
-	import com.bumpslide.ui.Label;
-	import com.bumpslide.ui.behavior.DragBehavior;
+	import com.bumpslide.ui.Grid;
+	import com.bumpslide.ui.behavior.DragScrollBehavior;
+	import com.bumpslide.util.Align;
 	import com.bumpslide.util.LoremIpsum;
 
 	import flash.display.InteractiveObject;
-	import flash.display.Sprite;
-	import flash.geom.Rectangle;
 
 	/**
 	 * Data Grid Test
@@ -30,43 +31,46 @@ package lists
 	 * @mxmlc -l+=../../libs -sp+=../ -static-rsls
 	 * @author David Knape, http://bumpslide.com/
 	 */
+	[SWF(backgroundColor="#2a3347", frameRate="60", width="480", height="960")]
 	public class G05_BarebonesDataGrid extends Application
 	{
 
 		private var grid:DataGrid;
 
-		private var dragBehavior:DragBehavior;
+		private var dragBehavior:DragScrollBehavior;
 
-		private var startingPosition:Number;
+		private var enableDragging:Boolean = true;
 
-		private var enableDragging:Boolean = false;
+		private var stats:Stats;
 
 		override protected function addChildren():void
 		{				
 			grid = new DataGrid( null, 30, [ 'gridIndex', 'name', 'description' ], [ .3, .3, .4 ] );
-			grid.tweenEnabled = false;
+			grid.addEventListener( Grid.EVENT_ITEM_CLICK, onItemSelect, true );
+			grid.tweenEnabled = true;
 			grid.dataProvider = new LoopedDataProvider( LoremIpsum.DATA, 5E9 );
+			grid.layout.renderInBatches = true;
+			grid.layout.renderBatchPageCount = 3;
+			
 			addChild( grid );
-						
-			if(enableDragging) {
-				dragBehavior = DragBehavior.init( InteractiveObject( grid ), null, false, false );
+			
+			addChild(stats = new Stats() );
+			callLater( 500, initDragging );
+		}
+
+
+		private function onItemSelect( event:UIEvent ):void
+		{
+			trace( "Selected", event.data.id );
+		}
+
+
+		private function initDragging():void
+		{
+			if (enableDragging) {
+				dragBehavior = DragScrollBehavior.init( InteractiveObject( grid ), grid.layout );
 				grid.hideScrollbar = true;
-				addEventListener( DragEvent.EVENT_DRAG_START, handleDragStart );
-				addEventListener( DragEvent.EVENT_DRAG_MOVE, handleDragMove );
 			}
-		}
-
-
-		private function handleDragStart( event:DragEvent ):void
-		{
-			startingPosition = grid.layout.scrollPosition;
-		}
-
-
-		private function handleDragMove( event:DragEvent ):void
-		{
-			grid.layout.scrollPosition = startingPosition - event.delta.y / grid.layout.rowHeight;
-			grid.scrollbar.updateNow();
 		}
 
 
@@ -74,6 +78,8 @@ package lists
 		{
 			grid.move( 10, 10 );
 			grid.setSize( width - 20, height - 20 );
+			
+			Align.right( stats, width );
 		}
 	}
 }
