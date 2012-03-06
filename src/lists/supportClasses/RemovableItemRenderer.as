@@ -29,11 +29,9 @@ package lists.supportClasses
 
 		override protected function addChildren():void
 		{
-			Style.BUTTON_CORNER_RADIUS = 3;
 			Style.BUTTON_LABEL = 0x000000;
-
 			labelButton = add( Button, { enabled:false } );
-			overlay = add( Box, { cornerRadius:Style.BUTTON_CORNER_RADIUS, blendMode:BlendMode.MULTIPLY } );
+			overlay = add( Box, { cornerRadius:Style.BUTTON_BACKGROUND_PROPS.cornerRadius, blendMode:BlendMode.MULTIPLY } );
 			closeButton = add( Button, { label:'x', padding:'2 5', alignH:'right -5', y:5, onClick:handleCloseClick } );
 
 			cacheAsBitmap = true;

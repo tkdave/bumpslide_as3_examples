@@ -3,6 +3,7 @@
 	Button Demo in MXML
 	
 	@mxmlc -l+=../../libs -sp+=../ -static-rsls
+
 -->
 <ui:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ui="com.bumpslide.ui.*">
 
@@ -18,7 +19,6 @@
 			
 			// Setup some default styles
 			Style.LABEL_TEXT_FORMAT = new TextFormat( 'Trebuchet MS', 12, 0x333333, true );
-			Style.BUTTON_CORNER_RADIUS = 3;
 			
 			
 		]]>

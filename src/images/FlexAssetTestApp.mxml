@@ -25,45 +25,65 @@
 				Style.LABEL_TEXT_FORMAT = new TextFormat( 'Arial', 14, 0x333333, true );
 			}
 			
-			private function updatePreviewRect( img:Image, box:Box ):void {
-				var size:Rectangle = ImageUtil.resizeRect( new Rectangle(0,0,200,200), ImageUtil.getSize(img) );
-				if(box) {
-					box.setSize( size.width, size.height );
-					box.x = img.x + (img.width - box.width)/2;
-					box.y = img.y + (img.height - box.height)/2;
-				}
+			
+			
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
 				
+				if(hasChanged(VALID_SIZE)){
+					colWidth = Math.round( width * .2 );
+					col2x = colWidth + space;
+					col3x = col2x * 2;
+				}
 			}
+			
+			[Bindable]
+			public var colWidth:Number = 200;
+			
+			[Bindable]
+			public var space:Number = 25;
+			
+			[Bindable]
+			public var col2x:Number = 225;
+			
+			[Bindable]
+			public var col3x:Number = 450;
+			
+			
+			
+			
+			
 
 		]]>
 	</fx:Script>
 	
-	<Container layout="vertical" spacing="25" y="25" x="25">
+	<Container layout="vertical" spacing="{space}" y="25" x="25">
 	
 		<Component>
 			<Label text="Resized" />
-			<Label text="Cropped" x="225" />
-			<Label text="Original With Crop Preview" x="450" />
+			<Label text="Cropped" x="{col2x}" />
+			<Label text="Original" x="{col3x}" />
 		</Component>
 
 		<Component>
-			<Image width="200" height="200" source="{panorama_image}" scaleMode="resize"/>
-			<Image x="225" width="200" height="200" source="{panorama_image}" scaleMode="crop"/>
-			<Image id="originalImage1" x="450" width="200" height="200" source="{panorama_image}" onImageLoaded="updatePreviewRect( originalImage1, previewBox1)"/>
+			<Image width="{colWidth}" height="200" source="{panorama_image}" scaleMode="resize"/>
+			<Image x="{col2x}" width="{colWidth}" height="{colWidth}" source="{panorama_image}" scaleMode="crop"/>
+			<Image id="originalImage1" x="{col3x}" width="{colWidth}" height="{colWidth}" source="{panorama_image}" />
 			
-			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
-			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="225" width="200" height="200"/>
-			<Box id="previewBox1" backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="{colWidth}" height="{colWidth}"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="{col2x}" width="{colWidth}" height="{colWidth}"/>
+			
 		</Component>
 		
 		<Component>
-			<Image width="200" height="200" source="{product_image}" scaleMode="resize"/>
-			<Image x="225" width="200" height="200" source="{product_image}" scaleMode="crop"/>
-			<Image id="originalImage2" x="450" width="200" height="200" source="{product_image}" onImageLoaded="updatePreviewRect( originalImage2, previewBox2)"/>
+			<Image width="{colWidth}" height="{colWidth}" source="{product_image}" scaleMode="resize"/>
+			<Image x="{col2x}" width="{colWidth}" height="{colWidth}" source="{product_image}" scaleMode="crop"/>
+			<Image id="originalImage2" x="{col3x}" width="{colWidth}" height="{colWidth}" source="{product_image}" />
 			
-			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="200" height="200"/>
-			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="225" width="200" height="200"/>
-			<Box id="previewBox2" backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" y="300" width="200" height="200"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" width="{colWidth}" height="{colWidth}"/>
+			<Box backgroundAlpha="0" borderColor="#ff0000" borderWidth="2" x="{col2x}" width="{colWidth}" height="{colWidth}"/>
+			
 		</Component>
 	</Container>
 			
